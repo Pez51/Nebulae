@@ -1,38 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #0f0c29;
+  color: #e0e0e0;
+  overflow: hidden; /* Evita el scroll en la página principal */
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+}
+
+/* HEADER */
+.App-header {
+  background: linear-gradient(90deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  padding: 15px 30px;
+  border-bottom: 1px solid #e43f5a;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  z-index: 1001; /* Encima del mapa */
+}
+
+.App-header h1 {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2em;
+  color: #e43f5a;
+  text-shadow: 0 0 10px #e43f5a;
+}
+
+.connect-wallet-btn, .wallet-connected {
+  background-color: transparent;
+  border: 2px solid #e43f5a;
+  color: #e43f5a;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.connect-wallet-btn:hover {
+  background-color: #e43f5a;
   color: white;
+  box-shadow: 0 0 15px #e43f5a;
 }
 
-.App-link {
-  color: #61dafb;
+.wallet-icon {
+  margin-right: 8px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* MAPA */
+main {
+  flex-grow: 1;
+}
+.map-container {
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: #162447;
+  color: #e0e0e0;
+  border: 1px solid #e43f5a;
+}
+
+/* MODAL DEL NFT */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 12, 41, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1002;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-content {
+  background: linear-gradient(145deg, #302b63, #0f0c29);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid #e43f5a;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  box-shadow: 0 0 30px rgba(228, 63, 90, 0.6);
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 2em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-btn:hover { color: #e43f5a; }
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.rarity-badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+.rarity-común { background-color: #4a4a4a; color: #fff; }
+.rarity-épico { background-color: #8e44ad; color: #fff; }
+.rarity-legendario { background: linear-gradient(45deg, #f39c12, #f1c40f); color: #333; text-shadow: 0 0 2px #fff; }
+
+.nft-viewer {
+  height: 200px;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 10px;
+  cursor: grab;
+}
+
+.nft-stats {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(0,0,0,0.2);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.stat-item { text-align: center; }
+.stat-item h4 { margin: 0 0 5px 0; color: #e43f5a; font-size: 0.9em; }
+.stat-item p { margin: 0; font-size: 1.2em; font-weight: bold; }
+
+.mint-btn {
+  background: linear-gradient(45deg, #e43f5a, #b8324f);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-family: 'Orbitron', sans-serif;
+  width: 100%;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+}
+
+.mint-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(228, 63, 90, 0.5);
+}
+
+.mint-btn:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.minting-status {
+    margin-top: 15px;
+    color: #f1c40f;
+    font-weight: bold;
+    text-align: center;
 }
