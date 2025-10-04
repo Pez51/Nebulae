@@ -4,15 +4,17 @@ import { ethers } from 'ethers';
 
 import Header from './components/Header';
 import MapComponent from './components/MapComponent';
+import InfoPanel from './components/InfoPanel';
 import NftModal from './components/NftModal';
-import LoadingSpinner from './components/LoadingSpinner'; // Correcto: Lo importamos desde su archivo
+import LoadingSpinner from './components/LoadingSpinner';
+import { locationsData } from './data/locationsData';
 
 import './App.css';
 
 function App() {
-  // ... (todo el código de estados y funciones se mantiene igual)
   const [hotspots, setHotspots] = useState([]);
   const [selectedHotspot, setSelectedHotspot] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
   const [walletAddress, setWalletAddress] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,16 +27,18 @@ function App() {
         const response = await axios.get('http://localhost:3001/api/hotspots');
         setHotspots(response.data);
       } catch (error) {
-        console.error("Error fatal al cargar datos del backend:", error);
-        alert("No se pudo conectar al backend. Asegúrate de que el servidor esté corriendo.");
+        console.error("Error al cargar datos del backend:", error);
         setHotspots([
-            { id: 0, lat: -16.3989, lon: -71.5375, name: 'Plaza de Armas (Datos de Respaldo)', rarity: 'Común', pollinatorActivity: '30%', price: '10 $BLOOM' }
+          { id: 0, lat: -16.3989, lon: -71.5375, name: 'Plaza de Armas (Datos de Respaldo)', rarity: 'Común', pollinatorActivity: '30%', price: '10 $BLOOM' }
         ]);
       } finally {
         setIsLoading(false);
       }
     };
     fetchHotspots();
+    
+    // Seleccionar primera ubicación por defecto
+    setSelectedLocation(locationsData[0]);
   }, []);
 
   const connectWallet = async () => {
@@ -58,6 +62,10 @@ function App() {
     setMintingMessage('');
   };
 
+  const handleLocationSelect = (location) => {
+    setSelectedLocation(location);
+  };
+
   if (isLoading) {
     return <LoadingSpinner message="Cargando datos de floración desde el servidor..." />;
   }
@@ -65,9 +73,20 @@ function App() {
   return (
     <div className="App">
       <Header walletAddress={walletAddress} connectWallet={connectWallet} />
-      <main>
-        <MapComponent hotspots={hotspots} onHotspotClick={setSelectedHotspot} />
-      </main>
+      <div className="main-content">
+        <div className="left-section">
+          <MapComponent 
+            hotspots={hotspots} 
+            onHotspotClick={setSelectedHotspot}
+            locations={locationsData}
+            selectedLocation={selectedLocation}
+            onLocationSelect={handleLocationSelect}
+          />
+        </div>
+        <div className="right-section">
+          <InfoPanel selectedLocation={selectedLocation} />
+        </div>
+      </div>
       <NftModal
         hotspot={selectedHotspot}
         onClose={handleCloseModal}
@@ -80,8 +99,5 @@ function App() {
     </div>
   );
 }
-
-// LA SIGUIENTE SECCIÓN SE ELIMINÓ PORQUE YA EXISTE EN SU PROPIO ARCHIVO.
-// const LoadingSpinner = ({ message }) => ( ... );
 
 export default App;

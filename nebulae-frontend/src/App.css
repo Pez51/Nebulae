@@ -61,15 +61,22 @@ body {
 main {
   flex-grow: 1;
 }
-.map-container {
-  height: 100%;
-  width: 100%;
+/* NUEVO LAYOUT PRINCIPAL */
+.main-content {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 60px);
 }
 
-.leaflet-popup-content-wrapper, .leaflet-popup-tip {
-  background: #162447;
-  color: #e0e0e0;
-  border: 1px solid #e43f5a;
+.left-section {
+  flex: 3;
+  display: flex;
+  background: rgba(16, 18, 27, 0.6);
+}
+
+.right-section {
+  flex: 2;
+  background: rgba(16, 18, 27, 0.8);
 }
 
 /* MODAL DEL NFT */
@@ -214,4 +221,100 @@ main {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+/* App.css */
+
+/* ... (mantenemos los estilos anteriores y agregamos) */
+
+.main-content {
+  display: flex;
+  height: calc(100vh - 60px); /* Restamos la altura del header */
+}
+
+.left-panel {
+  display: flex;
+  width: 70%;
+  position: relative;
+}
+
+.right-panel {
+  width: 30%;
+  padding: 20px;
+  background: rgba(16, 18, 27, 0.6);
+  border-left: 1px solid #e43f5a;
+  overflow-y: auto;
+}
+
+/* Estilos para el mapa estático */
+.static-map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.static-map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hotspot-point {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.point {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #e43f5a;
+  border: 2px solid white;
+  box-shadow: 0 0 10px rgba(228, 63, 90, 0.8);
+  transition: transform 0.2s;
+}
+
+.hotspot-point:hover .point {
+  transform: scale(1.3);
+}
+
+/* Estilos para los botones de navegación */
+.navigation-buttons {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: rgba(16, 18, 27, 0.6);
+  border-right: 1px solid #e43f5a;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid #e43f5a;
+  color: #e43f5a;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav-btn:hover {
+  background: #e43f5a;
+  color: white;
+}
+
+/* Estilos para el panel de información */
+.info-panel h2 {
+  color: #e43f5a;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.hotspot-image img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.hotspot-details {
+  margin-top: 15px;
 }
