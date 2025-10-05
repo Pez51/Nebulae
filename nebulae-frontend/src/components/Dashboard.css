@@ -1,0 +1,96 @@
+.dashboard {
+  flex: 1;
+  background: rgba(16, 18, 27, 0.9);
+  color: white;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-left: 1px solid #302b63;
+}
+
+.dashboard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 0;
+}
+
+.dashboard ul li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #302b63;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dashboard ul li a {
+  color: #e0e0e0;
+  text-decoration: none;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+}
+
+.dashboard ul li:hover {
+  background: rgba(48, 43, 99, 0.6);
+}
+
+.dashboard ul li.active {
+  background: rgba(228, 63, 90, 0.2);
+  border-left: 3px solid #e43f5a;
+}
+
+.dashboard ul li.active a {
+  color: #e43f5a;
+  font-weight: bold;
+}
+
+.carousel-section {
+  flex: 1;
+  padding: 20px;
+  background: rgba(16, 18, 27, 0.6);
+}
+
+.carousel {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #302b63;
+}
+
+.carousel-inner img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  background: rgba(15, 12, 41, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.carousel-caption h3 {
+  color: #e43f5a;
+  font-family: 'Orbitron', sans-serif;
+  margin: 0 0 5px 0;
+  font-size: 1.2em;
+}
+
+.carousel-caption p {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 0.9em;
+}
+
+.carousel-indicators li {
+  background-color: #302b63;
+  border: 1px solid #e43f5a;
+}
+
+.carousel-indicators .active {
+  background-color: #e43f5a;
+}
+
+.carousel-control {
+  background: rgba(15, 12, 41, 0.5) !important;
+}

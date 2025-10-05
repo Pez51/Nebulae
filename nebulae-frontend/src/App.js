@@ -4,7 +4,8 @@ import { ethers } from 'ethers';
 
 import Header from './components/Header';
 import MapComponent from './components/MapComponent';
-import InfoPanel from './components/InfoPanel';
+import InfoSection from './components/InfoSection';
+import Dashboard from './components/Dashboard';
 import NftModal from './components/NftModal';
 import LoadingSpinner from './components/LoadingSpinner';
 import { locationsData } from './data/locationsData';
@@ -17,6 +18,7 @@ function App() {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [walletAddress, setWalletAddress] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeButton, setActiveButton] = useState(1);
 
   const [isMinting, setIsMinting] = useState(false);
   const [mintingMessage, setMintingMessage] = useState('');
@@ -64,6 +66,7 @@ function App() {
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
+    setActiveButton(1); // Reset al primer botón cuando cambia ubicación
   };
 
   if (isLoading) {
@@ -73,19 +76,26 @@ function App() {
   return (
     <div className="App">
       <Header walletAddress={walletAddress} connectWallet={connectWallet} />
-      <div className="main-content">
-        <div className="left-section">
-          <MapComponent 
-            hotspots={hotspots} 
-            onHotspotClick={setSelectedHotspot}
-            locations={locationsData}
-            selectedLocation={selectedLocation}
-            onLocationSelect={handleLocationSelect}
-          />
+      <div className="container">
+        <div className="main-content">
+          <div className="map-section">
+            <MapComponent 
+              hotspots={hotspots} 
+              onHotspotClick={setSelectedHotspot}
+              locations={locationsData}
+              selectedLocation={selectedLocation}
+              onLocationSelect={handleLocationSelect}
+            />
+          </div>
+          <div className="info-section">
+            <InfoSection 
+              selectedLocation={selectedLocation} 
+              activeButton={activeButton}
+              onButtonClick={setActiveButton}
+            />
+          </div>
         </div>
-        <div className="right-section">
-          <InfoPanel selectedLocation={selectedLocation} />
-        </div>
+        <Dashboard />
       </div>
       <NftModal
         hotspot={selectedHotspot}

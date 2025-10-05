@@ -6,7 +6,7 @@ const Header = ({ walletAddress, connectWallet }) => {
     <header className="App-header">
       <div className="logo-container">
         {/* Puedes poner un SVG o una imagen del logo aquí */}
-        <h1>NEBULAE</h1>
+        <h1>BLOSSOMCHAIN</h1>
       </div>
       <div className="header-controls">
         {walletAddress ? (

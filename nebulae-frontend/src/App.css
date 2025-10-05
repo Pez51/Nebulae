@@ -2,10 +2,12 @@
 
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Roboto', sans-serif;
   background-color: #0f0c29;
   color: #e0e0e0;
-  overflow: hidden; /* Evita el scroll en la página principal */
+  height: 100vh;
+  overflow: hidden;
 }
 
 .App {
@@ -22,7 +24,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1001; /* Encima del mapa */
+  z-index: 1001;
 }
 
 .App-header h1 {
@@ -57,148 +59,40 @@ body {
   margin-right: 8px;
 }
 
-/* MAPA */
-main {
-  flex-grow: 1;
-}
-/* NUEVO LAYOUT PRINCIPAL */
-.main-content {
+/* CONTENEDOR PRINCIPAL */
+.container {
   display: flex;
-  flex: 1;
   height: calc(100vh - 60px);
+  width: 100%;
 }
 
-.left-section {
-  flex: 3;
+.main-content {
+  flex: 4;
   display: flex;
+  flex-direction: column;
+}
+
+.map-section {
+  flex: 2;
+  padding: 10px;
+  box-sizing: border-box;
   background: rgba(16, 18, 27, 0.6);
 }
 
-.right-section {
-  flex: 2;
-  background: rgba(16, 18, 27, 0.8);
+.info-section {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-/* MODAL DEL NFT */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(15, 12, 41, 0.8);
-  backdrop-filter: blur(5px);
+.dashboard {
+  flex: 1;
+  background: rgba(16, 18, 27, 0.9);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1002;
-  animation: fadeIn 0.3s ease;
+  flex-direction: column;
 }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.modal-content {
-  background: linear-gradient(145deg, #302b63, #0f0c29);
-  padding: 25px;
-  border-radius: 15px;
-  border: 1px solid #e43f5a;
-  width: 90%;
-  max-width: 450px;
-  position: relative;
-  box-shadow: 0 0 30px rgba(228, 63, 90, 0.6);
-  animation: slideIn 0.4s ease-out;
-}
-
-@keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  color: #aaa;
-  font-size: 2em;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-.close-btn:hover { color: #e43f5a; }
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.modal-header h2 {
-  margin: 0;
-  font-family: 'Orbitron', sans-serif;
-}
-
-.rarity-badge {
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 0.8em;
-  font-weight: bold;
-}
-.rarity-común { background-color: #4a4a4a; color: #fff; }
-.rarity-épico { background-color: #8e44ad; color: #fff; }
-.rarity-legendario { background: linear-gradient(45deg, #f39c12, #f1c40f); color: #333; text-shadow: 0 0 2px #fff; }
-
-.nft-viewer {
-  height: 200px;
-  width: 100%;
-  margin-bottom: 20px;
-  background-color: rgba(0,0,0,0.2);
-  border-radius: 10px;
-  cursor: grab;
-}
-
-.nft-stats {
-  display: flex;
-  justify-content: space-around;
-  background-color: rgba(0,0,0,0.2);
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.stat-item { text-align: center; }
-.stat-item h4 { margin: 0 0 5px 0; color: #e43f5a; font-size: 0.9em; }
-.stat-item p { margin: 0; font-size: 1.2em; font-weight: bold; }
-
-.mint-btn {
-  background: linear-gradient(45deg, #e43f5a, #b8324f);
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.2em;
-  font-family: 'Orbitron', sans-serif;
-  width: 100%;
-  transition: all 0.3s;
-  letter-spacing: 1px;
-}
-
-.mint-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(228, 63, 90, 0.5);
-}
-
-.mint-btn:disabled {
-  background: #555;
-  cursor: not-allowed;
-}
-
-.minting-status {
-    margin-top: 15px;
-    color: #f1c40f;
-    font-weight: bold;
-    text-align: center;
-}
+/* Mantén los estilos del modal y spinner que ya tienes */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -209,6 +103,7 @@ main {
   font-family: 'Orbitron', sans-serif;
   color: #e43f5a;
 }
+
 .spinner {
   border: 8px solid rgba(255, 255, 255, 0.2);
   border-top: 8px solid #e43f5a;
@@ -218,103 +113,8 @@ main {
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
 }
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-/* App.css */
-
-/* ... (mantenemos los estilos anteriores y agregamos) */
-
-.main-content {
-  display: flex;
-  height: calc(100vh - 60px); /* Restamos la altura del header */
-}
-
-.left-panel {
-  display: flex;
-  width: 70%;
-  position: relative;
-}
-
-.right-panel {
-  width: 30%;
-  padding: 20px;
-  background: rgba(16, 18, 27, 0.6);
-  border-left: 1px solid #e43f5a;
-  overflow-y: auto;
-}
-
-/* Estilos para el mapa estático */
-.static-map-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.static-map-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hotspot-point {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-}
-
-.point {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #e43f5a;
-  border: 2px solid white;
-  box-shadow: 0 0 10px rgba(228, 63, 90, 0.8);
-  transition: transform 0.2s;
-}
-
-.hotspot-point:hover .point {
-  transform: scale(1.3);
-}
-
-/* Estilos para los botones de navegación */
-.navigation-buttons {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  background: rgba(16, 18, 27, 0.6);
-  border-right: 1px solid #e43f5a;
-}
-
-.nav-btn {
-  background: transparent;
-  border: 1px solid #e43f5a;
-  color: #e43f5a;
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.nav-btn:hover {
-  background: #e43f5a;
-  color: white;
-}
-
-/* Estilos para el panel de información */
-.info-panel h2 {
-  color: #e43f5a;
-  font-family: 'Orbitron', sans-serif;
-}
-
-.hotspot-image img {
-  width: 100%;
-  border-radius: 10px;
-  margin-top: 15px;
-}
-
-.hotspot-details {
-  margin-top: 15px;
 }
