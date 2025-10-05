@@ -1,38 +1,29 @@
 [
   {
     "id": 1,
-    "name": "Ecosistema del Río Chili",
-    "lat": -16.409047,
-    "lon": -71.537451,
+    "lat": -16.3989,
+    "lon": -71.5375,
+    "name": "Zona Desértica - Phoenix",
     "rarity": "Común",
-    "pollinatorActivity": "65%",
-    "price": "50 $BLOOM"
+    "pollinatorActivity": "45%",
+    "price": "15 $BLOOM"
   },
   {
-    "id": 2,
-    "name": "Valle de Chilina",
-    "lat": -16.3769,
-    "lon": -71.5283,
-    "rarity": "Épico",
-    "pollinatorActivity": "88%",
-    "price": "250 $BLOOM"
+    "id": 2, 
+    "lat": -16.3900,
+    "lon": -71.5300,
+    "name": "Zona Montañosa",
+    "rarity": "Raro", 
+    "pollinatorActivity": "60%",
+    "price": "25 $BLOOM"
   },
   {
     "id": 3,
-    "name": "Reserva Nacional de Salinas y Aguada Blanca",
-    "lat": -16.2236,
-    "lon": -71.2185,
-    "rarity": "Legendario",
-    "pollinatorActivity": "95%",
-    "price": "1200 $BLOOM"
-  },
-  {
-    "id": 4,
-    "name": "Campiña de Socabaya",
-    "lat": -16.4486,
-    "lon": -71.5332,
-    "rarity": "Común",
-    "pollinatorActivity": "72%",
-    "price": "75 $BLOOM"
+    "lat": -16.3950,
+    "lon": -71.5250, 
+    "name": "Área Urbana",
+    "rarity": "Épico",
+    "pollinatorActivity": "75%",
+    "price": "40 $BLOOM"
   }
 ]

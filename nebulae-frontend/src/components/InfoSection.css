@@ -1,46 +1,76 @@
-/* InfoSection.css */
 .info-section {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100%;
+  background: rgba(16, 18, 27, 0.8);
+  min-height: 300px;
 }
 
 .text-area {
   flex: 2;
-  padding: 10px;
+  padding: 25px;
   overflow-y: auto;
   box-sizing: border-box;
-  background: rgba(16, 18, 27, 0.8);
   color: #e0e0e0;
+  background: rgba(16, 18, 27, 0.6);
+  border-radius: 10px;
+  margin: 10px;
+  border: 1px solid #302b63;
+}
+
+.location-header {
+  margin-bottom: 20px;
+  border-bottom: 2px solid #302b63;
+  padding-bottom: 15px;
+}
+
+.location-header h3 {
+  color: #e43f5a;
+  font-family: 'Orbitron', sans-serif;
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.content-area {
+  line-height: 1.7;
+  font-size: 1.05em;
 }
 
 .button-area {
   flex: 1;
-  padding: 10px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  background: rgba(16, 18, 27, 0.8);
+  justify-content: flex-start;
+  gap: 20px;
+  background: rgba(16, 18, 27, 0.9);
+  border-left: 1px solid #302b63;
 }
 
 .button-area button {
-  padding: 10px;
-  margin: 5px 0;
-  background-color: #302b63;
-  border: 1px solid #e43f5a;
+  padding: 18px;
+  background: transparent;
+  border: 2px solid #302b63;
   color: #e0e0e0;
   cursor: pointer;
-  width: 100%;
-  box-sizing: border-box;
+  border-radius: 10px;
   transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1em;
+  font-weight: 500;
 }
 
 .button-area button:hover {
-  background-color: #e43f5a;
+  border-color: #e43f5a;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(228, 63, 90, 0.3);
 }
 
 .button-area button.active {
-  background-color: #e43f5a;
-  color: white;
+  background: rgba(228, 63, 90, 0.2);
+  border-color: #e43f5a;
+  color: #e43f5a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(228, 63, 90, 0.4);
 }

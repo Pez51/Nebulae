@@ -19,6 +19,7 @@ function App() {
   const [walletAddress, setWalletAddress] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activeButton, setActiveButton] = useState(1);
+  const [backendError, setBackendError] = useState(false);
 
   const [isMinting, setIsMinting] = useState(false);
   const [mintingMessage, setMintingMessage] = useState('');
@@ -26,21 +27,40 @@ function App() {
   useEffect(() => {
     const fetchHotspots = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/hotspots');
+        console.log('🔍 Intentando conectar al backend...');
+        const response = await axios.get('http://localhost:3001/api/hotspots', {
+          timeout: 5000 // 5 segundos de timeout
+        });
+        console.log('✅ Datos recibidos del backend:', response.data);
         setHotspots(response.data);
+        setBackendError(false);
       } catch (error) {
-        console.error("Error al cargar datos del backend:", error);
-        setHotspots([
-          { id: 0, lat: -16.3989, lon: -71.5375, name: 'Plaza de Armas (Datos de Respaldo)', rarity: 'Común', pollinatorActivity: '30%', price: '10 $BLOOM' }
-        ]);
+        console.error('❌ Error al cargar datos del backend:', error);
+        setBackendError(true);
+        // Usar datos locales como fallback
+        const fallbackData = [
+          { 
+            id: 1, 
+            lat: -16.3989, 
+            lon: -71.5375, 
+            name: 'Zona Desértica (Modo Offline)', 
+            rarity: 'Común', 
+            pollinatorActivity: '45%', 
+            price: '15 $BLOOM' 
+          }
+        ];
+        setHotspots(fallbackData);
       } finally {
         setIsLoading(false);
       }
     };
+
     fetchHotspots();
     
     // Seleccionar primera ubicación por defecto
-    setSelectedLocation(locationsData[0]);
+    if (locationsData && locationsData.length > 0) {
+      setSelectedLocation(locationsData[0]);
+    }
   }, []);
 
   const connectWallet = async () => {
@@ -66,9 +86,10 @@ function App() {
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
-    setActiveButton(1); // Reset al primer botón cuando cambia ubicación
+    setActiveButton(1);
   };
 
+  // Si hay error de backend, mostrar mensaje pero permitir usar la app
   if (isLoading) {
     return <LoadingSpinner message="Cargando datos de floración desde el servidor..." />;
   }
@@ -76,6 +97,13 @@ function App() {
   return (
     <div className="App">
       <Header walletAddress={walletAddress} connectWallet={connectWallet} />
+      
+      {backendError && (
+        <div className="backend-warning">
+          ⚠️ Modo offline: Conectado con datos locales. El backend no está disponible.
+        </div>
+      )}
+      
       <div className="container">
         <div className="main-content">
           <div className="map-section">
