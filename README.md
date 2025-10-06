@@ -3,6 +3,7 @@ To run the page:
 Required:
   -JavaScript
   -React Framework
+---------------------
 Instructions:
   -In the terminal, first go to the nebula-backend section
   -Start the dependencies: npm init -y
