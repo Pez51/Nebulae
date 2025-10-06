@@ -5,28 +5,66 @@
   border-left: 1px solid #e43f5a;
   height: 100%;
   overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* SCROLLBAR PERSONALIZADO */
+.info-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.info-panel::-webkit-scrollbar-track {
+  background: rgba(16, 18, 27, 0.6);
+}
+
+.info-panel::-webkit-scrollbar-thumb {
+  background: #e43f5a;
+  border-radius: 4px;
+}
+
+.info-panel::-webkit-scrollbar-thumb:hover {
+  background: #b8324f;
+}
+
+/* Para Firefox */
+.info-panel {
+  scrollbar-width: thin;
+  scrollbar-color: #e43f5a rgba(16, 18, 27, 0.6);
 }
 
 .welcome-message {
   text-align: center;
   margin-top: 50%;
   transform: translateY(-50%);
+  padding: 0 20px;
 }
 
 .welcome-message h2 {
   color: #e43f5a;
   font-family: 'Orbitron', sans-serif;
   margin-bottom: 20px;
+  font-size: 1.8em;
+  text-shadow: 0 0 10px rgba(228, 63, 90, 0.3);
+}
+
+.welcome-message p {
+  color: #e0e0e0;
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .location-header {
   margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #302b63;
 }
 
 .location-header h2 {
   color: #e43f5a;
   font-family: 'Orbitron', sans-serif;
   margin: 0 0 10px 0;
+  font-size: 1.6em;
 }
 
 .location-type {
@@ -35,6 +73,8 @@
   border-radius: 20px;
   font-size: 0.9em;
   color: #b8b8b8;
+  display: inline-block;
+  border: 1px solid #e43f5a;
 }
 
 .location-image {
@@ -43,24 +83,43 @@
   margin-bottom: 25px;
   border-radius: 10px;
   overflow: hidden;
+  border: 2px solid #302b63;
+  transition: all 0.3s ease;
+}
+
+.location-image:hover {
+  border-color: #e43f5a;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(228, 63, 90, 0.3);
 }
 
 .location-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.location-image:hover img {
+  transform: scale(1.05);
 }
 
 .location-description {
   margin-bottom: 25px;
   line-height: 1.6;
   color: #e0e0e0;
+  font-size: 1em;
+  background: rgba(48, 43, 99, 0.3);
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 3px solid #e43f5a;
 }
 
 .location-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
+  margin-bottom: 25px;
 }
 
 .stat {
@@ -68,16 +127,114 @@
   padding: 15px;
   border-radius: 8px;
   border: 1px solid #302b63;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.stat:hover {
+  border-color: #e43f5a;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(228, 63, 90, 0.2);
 }
 
 .stat h4 {
   margin: 0 0 8px 0;
   color: #e43f5a;
   font-size: 0.9em;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .stat p {
   margin: 0;
   font-weight: bold;
   font-size: 1.1em;
+  color: #ffffff;
+}
+
+/* Estados de carga y vacío */
+.info-panel-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #e43f5a;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.info-panel-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #b8b8b8;
+  font-style: italic;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .info-panel {
+    padding: 20px 15px;
+    border-left: none;
+    border-top: 1px solid #e43f5a;
+  }
+  
+  .location-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .location-image {
+    height: 200px;
+  }
+  
+  .welcome-message {
+    margin-top: 40%;
+  }
+  
+  .welcome-message h2 {
+    font-size: 1.5em;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-panel > * {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Estados interactivos */
+.location-actions {
+  margin-top: 25px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  background: rgba(228, 63, 90, 0.2);
+  border: 1px solid #e43f5a;
+  color: #e43f5a;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9em;
+  flex: 1;
+  min-width: 120px;
+}
+
+.action-btn:hover {
+  background: #e43f5a;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(228, 63, 90, 0.3);
 }

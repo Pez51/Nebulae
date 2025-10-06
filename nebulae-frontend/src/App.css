@@ -25,6 +25,9 @@ body {
   justify-content: space-between;
   align-items: center;
   z-index: 1001;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
 }
 
 .App-header h1 {
@@ -62,37 +65,134 @@ body {
 /* CONTENEDOR PRINCIPAL */
 .container {
   display: flex;
-  height: calc(100vh - 60px);
-  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
+/* SCROLLBAR PERSONALIZADO */
+.container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: rgba(16, 18, 27, 0.6);
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #e43f5a;
+  border-radius: 6px;
+  border: 2px solid #0f0c29;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: #b8324f;
+}
+
+.container {
+  scrollbar-width: thin;
+  scrollbar-color: #e43f5a rgba(16, 18, 27, 0.6);
+}
+
+/* MAIN CONTENT - Área izquierda */
 .main-content {
   flex: 4;
   display: flex;
   flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
 }
 
+/* MAP SECTION - Ocupa TODO el espacio disponible */
 .map-section {
   flex: 2;
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
+  background: rgba(16, 18, 27, 0.6);
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* INFO SECTION */
+.info-section {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(16, 18, 27, 0.8);
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.info-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.info-section::-webkit-scrollbar-track {
   background: rgba(16, 18, 27, 0.6);
 }
 
-.info-section {
-  flex: 1;
-  padding: 10px;
-  box-sizing: border-box;
+.info-section::-webkit-scrollbar-thumb {
+  background: #e43f5a;
+  border-radius: 4px;
 }
 
+/* DASHBOARD - Panel derecho */
 .dashboard {
   flex: 1;
   background: rgba(16, 18, 27, 0.9);
   display: flex;
   flex-direction: column;
+  border-left: 1px solid #302b63;
+  overflow-y: auto;
 }
 
-/* Mantén los estilos del modal y spinner que ya tienes */
+.dashboard::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dashboard::-webkit-scrollbar-track {
+  background: rgba(16, 18, 27, 0.6);
+}
+
+.dashboard::-webkit-scrollbar-thumb {
+  background: #e43f5a;
+  border-radius: 4px;
+}
+
+.dashboard::-webkit-scrollbar-thumb:hover {
+  background: #b8324f;
+}
+
+.dashboard-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.dashboard-menu {
+  flex-shrink: 0;
+}
+
+.dashboard-carousel {
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+.backend-warning {
+  background: #ff9800;
+  color: #000;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 2px solid #f57c00;
+  flex-shrink: 0;
+}
+
+/* LOADING */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -117,4 +217,34 @@ body {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .dashboard {
+    min-height: 400px;
+    border-left: none;
+    border-top: 1px solid #302b63;
+  }
+  
+  .map-section {
+    min-height: 300px;
+  }
+  
+  .info-section {
+    padding: 10px;
+    min-height: 200px;
+  }
+  
+  .App-header {
+    padding: 10px 15px;
+  }
+  
+  .App-header h1 {
+    font-size: 1.5em;
+  }
 }

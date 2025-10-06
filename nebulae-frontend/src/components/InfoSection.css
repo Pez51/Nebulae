@@ -1,46 +1,278 @@
-/* InfoSection.css */
 .info-section {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100%;
+  background: rgba(16, 18, 27, 0.8);
+  min-height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .text-area {
   flex: 2;
-  padding: 10px;
+  padding: 25px;
   overflow-y: auto;
   box-sizing: border-box;
-  background: rgba(16, 18, 27, 0.8);
   color: #e0e0e0;
+  background: rgba(16, 18, 27, 0.6);
+  border-radius: 10px 0 0 10px;
+  margin: 10px;
+  border: 1px solid #302b63;
+  position: relative;
+}
+
+/* SCROLLBAR PERSONALIZADO PARA TEXT-AREA */
+.text-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.text-area::-webkit-scrollbar-track {
+  background: rgba(16, 18, 27, 0.4);
+  border-radius: 4px;
+}
+
+.text-area::-webkit-scrollbar-thumb {
+  background: #e43f5a;
+  border-radius: 4px;
+}
+
+.text-area::-webkit-scrollbar-thumb:hover {
+  background: #b8324f;
+}
+
+/* Para Firefox */
+.text-area {
+  scrollbar-width: thin;
+  scrollbar-color: #e43f5a rgba(16, 18, 27, 0.4);
+}
+
+.location-header {
+  margin-bottom: 20px;
+  border-bottom: 2px solid #302b63;
+  padding-bottom: 15px;
+}
+
+.location-header h3 {
+  color: #e43f5a;
+  font-family: 'Orbitron', sans-serif;
+  margin: 0;
+  font-size: 1.5em;
+  text-shadow: 0 0 8px rgba(228, 63, 90, 0.3);
+}
+
+.location-type {
+  background: #302b63;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  color: #b8b8b8;
+  display: inline-block;
+  margin-top: 8px;
+  border: 1px solid #e43f5a;
+}
+
+.content-area {
+  line-height: 1.7;
+  font-size: 1.05em;
+}
+
+.content-area p {
+  margin-bottom: 15px;
+}
+
+.content-area strong {
+  color: #e43f5a;
+  font-weight: 600;
 }
 
 .button-area {
   flex: 1;
-  padding: 10px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  background: rgba(16, 18, 27, 0.8);
+  justify-content: flex-start;
+  gap: 20px;
+  background: rgba(16, 18, 27, 0.9);
+  border-left: 1px solid #302b63;
+  min-width: 200px;
 }
 
+/* BOTONES CORREGIDOS - CENTRADO PERFECTO */
 .button-area button {
-  padding: 10px;
-  margin: 5px 0;
-  background-color: #302b63;
-  border: 1px solid #e43f5a;
+  padding: 18px 20px;
+  background: transparent;
+  border: 2px solid #302b63;
   color: #e0e0e0;
   cursor: pointer;
-  width: 100%;
-  box-sizing: border-box;
+  border-radius: 10px;
   transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1em;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  /* CENTRADO CORREGIDO */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.button-area button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(228, 63, 90, 0.2), transparent);
+  transition: left 0.5s;
+  z-index: 0;
+}
+
+.button-area button:hover::before {
+  left: 100%;
+}
+
+/* Contenido del botón sobre el gradiente */
+.button-area button > * {
+  position: relative;
+  z-index: 1;
 }
 
 .button-area button:hover {
-  background-color: #e43f5a;
+  border-color: #e43f5a;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(228, 63, 90, 0.4);
+  background: rgba(228, 63, 90, 0.1);
 }
 
 .button-area button.active {
-  background-color: #e43f5a;
-  color: white;
+  background: rgba(228, 63, 90, 0.2);
+  border-color: #e43f5a;
+  color: #e43f5a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(228, 63, 90, 0.4);
+}
+
+/* CHECK MARK - POSICIÓN ABSOLUTA SIN AFECTAR CENTRADO */
+.button-area button.active::after {
+  content: '✓';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  font-size: 1.2em;
+  z-index: 2;
+}
+
+/* Estados de carga y vacío */
+.text-area-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #e43f5a;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.text-area-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #b8b8b8;
+  font-style: italic;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .info-section {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .text-area {
+    flex: none;
+    height: 300px;
+    margin: 10px;
+    border-radius: 10px;
+  }
+  
+  .button-area {
+    flex: none;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 15px;
+    border-left: none;
+    border-top: 1px solid #302b63;
+    min-height: 80px;
+  }
+  
+  .button-area button {
+    min-width: 150px;
+    padding: 15px;
+    font-size: 1em;
+  }
+  
+  .location-header h3 {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-area {
+    padding: 15px;
+    margin: 5px;
+  }
+  
+  .button-area {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .button-area button {
+    padding: 12px;
+    font-size: 0.9em;
+    min-width: 120px;
+  }
+}
+
+/* Animaciones */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.text-area {
+  animation: slideInFromLeft 0.5s ease-out;
+}
+
+.button-area {
+  animation: slideInFromRight 0.5s ease-out 0.1s both;
+}
+
+/* Efectos de brillo para botones */
+.button-area button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(228, 63, 90, 0.3);
 }

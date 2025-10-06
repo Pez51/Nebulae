@@ -55,11 +55,19 @@ const LoginModal = ({ show, onClose }) => {
           </div>
           <button type="submit">{isLogin ? 'Iniciar Sesión' : 'Registrarse'}</button>
         </form>
-        <p>
-          {isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?'}
-          <button type="button" onClick={() => setIsLogin(!isLogin)}>
+        <p style={{ textAlign: 'center', marginTop: '15px', color: '#e0e0e0' }}>
+          {isLogin ? '¿No tienes cuenta? ' : '¿Ya tienes cuenta? '}
+          <span 
+            style={{ 
+              color: '#e43f5a', 
+              cursor: 'pointer', 
+              textDecoration: 'underline',
+              fontWeight: 'bold'
+            }}
+            onClick={() => setIsLogin(!isLogin)}
+          >
             {isLogin ? 'Regístrate' : 'Inicia Sesión'}
-          </button>
+          </span>
         </p>
       </div>
     </div>
