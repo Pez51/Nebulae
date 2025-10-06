@@ -9,6 +9,8 @@ Instructions:
   -Start the dependencies: npm init -y
     npm install express cors
     node server.js
+---------------------------
   -In the nebula-frontend section:
     -npm install
      npm start
+------------
