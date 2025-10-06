@@ -63,7 +63,7 @@ const InfoPanel = ({ selectedLocation }) => {
       <div className="info-panel">
         <div className="info-panel-loading">
           <div className="loading-spinner"></div>
-          <p>Cargando información...</p>
+          <p>Loading information...</p>
         </div>
       </div>
     );

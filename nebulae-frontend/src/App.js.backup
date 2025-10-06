@@ -202,7 +202,7 @@ function App() {
   if (isLoading) {
     return (
       <LoadingSpinner 
-        message="Cargando datos de floración desde el servidor..." 
+        message="Loading bloom data from server..." 
       />
     );
   }

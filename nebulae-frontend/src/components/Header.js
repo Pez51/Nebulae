@@ -27,7 +27,7 @@ function Header({
             <span className="logo-icon">🌸</span>
             BloomWatch
           </h1>
-          <p className="header-subtitle">NFTs Ecológicos en Polkadot</p>
+          <p className="header-subtitle">Ecological NFTs on Polkadot</p>
         </div>
 
         {/* Status de blockchain */}
@@ -58,7 +58,7 @@ function Header({
           {!walletAddress ? (
             <button onClick={connectWallet} className="connect-wallet-btn">
               <span className="btn-icon">🔗</span>
-              Conectar Wallet
+              Connect Wallet
             </button>
           ) : (
             <div className="wallet-info">

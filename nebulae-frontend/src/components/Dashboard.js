@@ -28,7 +28,7 @@ const Dashboard = () => {
               className={activeTab === 'about' ? 'active' : ''}
               onClick={() => handleTabClick('about')}
             >
-              <a href="#about">Quienes Somos</a>
+              <a href="#about">About us</a>
             </li>
           </ul>
         </div>
@@ -38,51 +38,47 @@ const Dashboard = () => {
             <>
               <div className="info-card">
                 <h4>🌿 BLOSSOMCHAIN</h4>
-                <p>Plataforma innovadora que combina tecnología blockchain con conservación ambiental para monitorear y proteger la biodiversidad vegetal a nivel global.</p>
+                <p>Innovative platform that combines blockchain technology with environmental conservation to monitor and protect plant biodiversity globally.</p>
               </div>
               
               <div className="info-card">
-                <h4>📊 Estadísticas en Tiempo Real</h4>
-                <p>• 150+ especies de plantas monitoreadas<br/>
-                   • 45 zonas de conservación activas<br/>
-                   • 500+ usuarios registrados contribuyendo<br/>
-                   • 1,200+ NFTs de plantas creados<br/>
-                   • 98% de efectividad en seguimiento</p>
+                <h4>📊 Real-Time Statistics</h4>
+                <p>• 150+ monitored plant species<br/>
+                  • 45 active conservation zones<br/>
+                  • 500+ registered users contributing<br/>
+                  • 1,200+ plant NFTs created<br/>
+                  • 98% tracking effectiveness</p>
               </div>
               
               <div className="info-card">
-                <h4>🎯 Objetivos 2024</h4>
-                <p>• Preservar 50 especies endémicas en peligro<br/>
-                   • Reforestar 100 hectáreas de bosque<br/>
-                   • Educar a 10,000 personas sobre biodiversidad<br/>
-                   • Expandir a 3 nuevos países<br/>
-                   • Reducir huella de carbono en 25%</p>
+                <h4>🎯 2024 Goals</h4>
+                <p>• Preserve 50 endangered endemic species<br/>
+                  • Reforest 100 hectares of forest<br/>
+                  • Educate 10,000 people about biodiversity<br/>
+                  • Expand to 3 new countries<br/>
+                  • Reduce carbon footprint by 25%</p>
               </div>
 
               <div className="info-card">
-                <h4>🚀 Tecnología Utilizada</h4>
-                <p>• Blockchain Polkadot para transparencia<br/>
-                   • IoT sensors para monitoreo en tiempo real<br/>
-                   • Machine Learning para predicción de crecimiento<br/>
-                   • App móvil para participación ciudadana<br/>
-                   • Dashboard analytics para toma de decisiones</p>
+                <h4>🚀 Technology Used</h4>
+                <p>• Polkadot Blockchain for transparency<br/>
+                  • IoT sensors (NASA) for real-time monitoring<br/>
+                  • Analytics dashboard for decision making</p>
               </div>
 
               <div className="info-card">
-                <h4>🤝 Cómo Participar</h4>
-                <p>• Regístrate como voluntario<br/>
-                   • Adopta una planta mediante NFTs<br/>
-                   • Reporta avistamientos de especies<br/>
-                   • Comparte en redes sociales<br/>
-                   • Dona para proyectos de conservación</p>
+                <h4>🤝 How to Participate</h4>
+                <p>• Register as a volunteer<br/>
+                  • Adopt a plant through NFTs<br/>
+                 </p>
               </div>
             </>
           )}
 
           {activeTab === 'about' && (
             <div className="info-card">
-              <h4>ℹ️ Información Adicional</h4>
-              <p>Haz clic en "Quienes Somos" para ver más detalles sobre nuestra misión, visión y equipo.</p>
+               <h4>ℹ️ Additional information</h4>
+              <p>Click on "Who We Are" to learn more about our mission, vision, and team.</p>
             </div>
           )}
         </div>

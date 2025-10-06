@@ -36,19 +36,19 @@ const InfoSection = ({ selectedLocation, activeButton, onButtonClick }) => {
           className={activeButton === 1 ? 'active' : ''}
           onClick={() => onButtonClick(1)}
         >
-          Especies
+          Species
         </button>
         <button 
           className={activeButton === 2 ? 'active' : ''}
           onClick={() => onButtonClick(2)}
         >
-          Cuidados
+          Care
         </button>
         <button 
           className={activeButton === 3 ? 'active' : ''}
           onClick={() => onButtonClick(3)}
         >
-          Datos
+          Data
         </button>
       </div>
     </div>

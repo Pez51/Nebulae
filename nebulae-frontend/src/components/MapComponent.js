@@ -5,7 +5,7 @@ const MapComponent = ({ hotspots, onHotspotClick, locations, selectedLocation, o
   return (
     <div className="map-container">
       <div className="static-map">
-        <img src="/assets/imagenes/phoenix-map.jpg" alt="Mapa de Phoenix, Arizona" />
+        <img src="/assets/images/phoenix-map.jpg" alt="Mapa de Phoenix, Arizona" />
         
         {/* Puntos interactivos en el mapa */}
         {locations.map(location => (

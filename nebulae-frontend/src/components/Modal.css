@@ -26,35 +26,65 @@
   animation: slideUp 0.4s ease-out;
   max-height: 90vh;
   overflow-y: auto;
+  /* Asegurar que el scroll llegue completamente al final */
+  display: flex;
+  flex-direction: column;
 }
 
-/* SCROLLBAR PERSONALIZADO PARA MODAL */
+/* SCROLLBAR PERSONALIZADO PARA MODAL - MEJORADO */
 .modal-content::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 .modal-content::-webkit-scrollbar-track {
   background: rgba(16, 18, 27, 0.4);
-  border-radius: 4px;
+  border-radius: 5px;
+  margin: 5px 0;
 }
 
 .modal-content::-webkit-scrollbar-thumb {
-  background: #e43f5a;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #e43f5a, #b8324f);
+  border-radius: 5px;
+  border: 2px solid rgba(16, 18, 27, 0.3);
 }
 
 .modal-content::-webkit-scrollbar-thumb:hover {
-  background: #b8324f;
+  background: linear-gradient(180deg, #ff6b8b, #e43f5a);
 }
 
-/* Para Firefox */
+.modal-content::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, #b8324f, #8c2840);
+}
+
+/* Scrollbar que llega hasta el final */
+.modal-content::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+  margin-bottom: 5px;
+}
+
+.modal-content::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+  margin-top: 5px;
+}
+
+/* Para Firefox - MEJORADO */
 .modal-content {
   scrollbar-width: thin;
   scrollbar-color: #e43f5a rgba(16, 18, 27, 0.4);
+  scrollbar-gutter: stable;
+}
+
+/* Asegurar que el contenido tenga suficiente espacio para scroll completo */
+.modal-content::after {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-top: auto;
 }
 
 .about-modal {
   max-width: 700px;
+  min-height: 400px; /* Altura mínima para asegurar scroll */
 }
 
 .login-modal {
@@ -77,6 +107,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10; /* Asegurar que esté por encima del contenido */
 }
 
 .close-btn:hover {
@@ -90,6 +121,9 @@
   text-align: center;
   border-bottom: 2px solid #302b63;
   padding-bottom: 20px;
+  /* Evitar que el header se superponga */
+  position: relative;
+  z-index: 1;
 }
 
 .modal-header h2 {
@@ -161,6 +195,7 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  margin-top: auto; /* Empujar hacia abajo */
 }
 
 .modal-content button[type="submit"]::before {
@@ -192,6 +227,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 25px;
   margin-top: 25px;
+  margin-bottom: 20px; /* Espacio adicional al final */
 }
 
 .about-section {
@@ -286,6 +322,7 @@
     padding: 30px 25px;
     margin: 20px;
     border-radius: 15px;
+    max-height: 85vh; /* Ajustar altura en móviles */
   }
   
   .about-sections {
@@ -314,6 +351,7 @@
   .modal-content {
     padding: 25px 20px;
     margin: 15px;
+    max-height: 80vh; /* Más ajuste para móviles pequeños */
   }
   
   .modal-header h2 {
@@ -324,6 +362,10 @@
   .form-group textarea,
   .form-group select {
     padding: 10px 12px;
+  }
+  
+  .modal-content::-webkit-scrollbar {
+    width: 6px; /* Scrollbar más delgado en móviles */
   }
 }
 
@@ -381,4 +423,14 @@
 .cancel-btn:hover {
   background: rgba(255, 255, 255, 0.15);
   border-color: #e43f5a !important;
+}
+
+/* Clase adicional para contenido largo */
+.modal-content-long {
+  padding-bottom: 30px; /* Espacio extra al final */
+}
+
+/* Asegurar que los últimos elementos tengan margen inferior */
+.modal-content > *:last-child {
+  margin-bottom: 10px;
 }

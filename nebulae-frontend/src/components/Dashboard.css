@@ -16,30 +16,51 @@
   flex-direction: column;
   min-height: 0;
   overflow-y: auto; /* Scroll interno del dashboard */
+  /* Asegurar que el scroll llegue completamente al final */
+  padding-bottom: 10px; /* Espacio extra al final */
 }
 
-/* SCROLLBAR PERSONALIZADO PARA DASHBOARD */
+/* SCROLLBAR PERSONALIZADO PARA DASHBOARD - MEJORADO */
 .dashboard-content::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 .dashboard-content::-webkit-scrollbar-track {
   background: rgba(16, 18, 27, 0.6);
+  border-radius: 5px;
+  margin: 5px 0;
 }
 
 .dashboard-content::-webkit-scrollbar-thumb {
-  background: #e43f5a;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #e43f5a, #b8324f);
+  border-radius: 5px;
+  border: 2px solid rgba(16, 18, 27, 0.3);
 }
 
 .dashboard-content::-webkit-scrollbar-thumb:hover {
-  background: #b8324f;
+  background: linear-gradient(180deg, #ff6b8b, #e43f5a);
 }
 
-/* Para Firefox */
+.dashboard-content::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, #b8324f, #8c2840);
+}
+
+/* Scrollbar que llega hasta el final */
+.dashboard-content::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+  margin-bottom: 5px;
+}
+
+.dashboard-content::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+  margin-top: 5px;
+}
+
+/* Para Firefox - MEJORADO */
 .dashboard-content {
   scrollbar-width: thin;
   scrollbar-color: #e43f5a rgba(16, 18, 27, 0.6);
+  scrollbar-gutter: stable;
 }
 
 .dashboard-menu {
@@ -150,6 +171,8 @@
 .dashboard-info {
   padding: 30px 25px;
   flex: 1;
+  /* Asegurar que el contenido tenga espacio suficiente */
+  min-height: calc(100% - 200px);
 }
 
 .info-card {
@@ -182,6 +205,19 @@
   line-height: 1.5;
 }
 
+/* Asegurar que el último elemento tenga margen inferior suficiente */
+.dashboard-info > *:last-child {
+  margin-bottom: 10px;
+}
+
+/* Espacio extra al final del contenido */
+.dashboard-content::after {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-top: auto;
+}
+
 /* Estilos responsivos */
 @media (max-width: 768px) {
   .dashboard {
@@ -205,10 +241,15 @@
   
   .dashboard-info {
     padding: 20px 15px;
+    min-height: calc(100% - 150px);
   }
   
   .info-card {
     padding: 15px;
+  }
+  
+  .dashboard-content::-webkit-scrollbar {
+    width: 6px; /* Scrollbar más delgado en móviles */
   }
 }
 
@@ -227,4 +268,21 @@
   padding: 40px 20px;
   color: #b8b8b8;
   font-style: italic;
+  /* Asegurar que el mensaje vacío también tenga espacio */
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Clase para contenido largo que necesita scroll completo */
+.dashboard-content-long {
+  padding-bottom: 20px;
+}
+
+/* Asegurar que los elementos internos tengan suficiente espacio */
+.dashboard-inner-content {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }

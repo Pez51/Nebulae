@@ -106,7 +106,7 @@ const NftModal = ({ hotspot, onClose }) => {
       
     } catch (error) {
       console.error('Error conectando wallet:', error);
-      setMintingMessage('❌ Error al conectar wallet');
+      setMintingMessage('❌ Error Connecting Wallet');
     }
   };
 
@@ -335,7 +335,7 @@ const NftModal = ({ hotspot, onClose }) => {
           {!walletAddress ? (
             <button className="connect-btn" onClick={connectWallet}>
               <span className="btn-icon">🔗</span>
-              Conectar Wallet Polkadot
+              Connect Wallet Polkadot
             </button>
           ) : (
             <button 
